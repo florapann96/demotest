@@ -16,7 +16,13 @@ var Product = require('./models/product');
 var Cart = require('./models/cart');
 var User = require('./src/user/usermodel');
 //connect to DB
-mongoose.connect(config.database);
+
+mongoose.connect(config.database, {
+
+    
+    useNewUrlParser: true,
+    useUnifiedTopology: true, // commented out currently
+});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
