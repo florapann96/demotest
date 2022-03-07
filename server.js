@@ -145,62 +145,62 @@ app.get('*', function (req, res, next) {
     next();
 });
 
-app.get('/success', (req, res) => {
-    res.render('success')
+//app.get('/success', (req, res) => {
+//    res.render('success')
 
-})
+//})
 
-app.get('/failed', (req, res) => {
+//app.get('/failed', (req, res) => {
 
-    res.redirect('/users/plan')
-    req.flash('payment failed! please retry again')
-})
+//    res.redirect('/users/plan')
+//    req.flash('payment failed! please retry again')
+//})
 
-// Set routes
+//// Set routes
 
-app.get('/search', getproduct, getcart1, renderForm);
+//app.get('/search', getproduct, getcart1, renderForm);
 
-function getproduct(req, res, next) {
-    // Code here
-    const { productName } = req.query;
-    Product.find({ $text: { $search: productName } }, function (err, products) {
+//function getproduct(req, res, next) {
+//    // Code here
+//    const { productName } = req.query;
+//    Product.find({ $text: { $search: productName } }, function (err, products) {
 
-        if (err)
-            console.log(err);
+//        if (err)
+//            console.log(err);
 
-        res.locals.savedproduct = products;
-        next();
-    });
-};
-function getcart1(req, res, next) {
-    // Code here
-    if (req.isAuthenticated()) {
-        Cart.find({ owner: req.user._id }, function (err, cart) {
-            if (err) {
-                console.log(err);
-            }
+//        res.locals.savedproduct = products;
+//        next();
+//    });
+//};
+//function getcart1(req, res, next) {
+//    // Code here
+//    if (req.isAuthenticated()) {
+//        Cart.find({ owner: req.user._id }, function (err, cart) {
+//            if (err) {
+//                console.log(err);
+//            }
 
-            res.locals.cart = cart;
+//            res.locals.cart = cart;
 
-            next();
+//            next();
 
-        })
-    }
-    else {
+//        })
+//    }
+//    else {
 
-        var cart = { cart: '0' }
-        res.locals.cart = cart;
-        next();
-        console.log(cart);
-        console.log('user is not logged in');
-    }
+//        var cart = { cart: '0' }
+//        res.locals.cart = cart;
+//        next();
+//        console.log(cart);
+//        console.log('user is not logged in');
+//    }
 
 
-};
+//};
 
-function renderForm(req, res) {
-    res.render("search");
-};
+//function renderForm(req, res) {
+//    res.render("search");
+//};
 //app.get('/search', async (req, res) => {
 //    const { productName } = req.query;
 //    Product.find({ $text: { $search: productName } }, function (err, products) {
