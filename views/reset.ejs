@@ -1,0 +1,39 @@
+<%- include ('_layouts/header'); -%>
+<form method="post" action="/users/reset/<%= token %>">
+<div class="container-fluid ps-md-0">
+  <div class="row g-0">
+    <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+    <div class="col-md-8 col-lg-6">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9 col-lg-8 mx-auto">
+              <h3 class="login-heading mb-4" style="font-size:30px;">Reset Password</h3>
+              <br>
+              <!-- Sign In Form -->
+              
+              <form>
+                <div class="form-floating mb-3 loginform">
+                  <input type="password" name="password" class="form-control1" id="floatingPassword" placeholder="Password">
+                  
+                </div>
+                <br>
+                  <div class="form-floating mb-3 loginform">
+                  <input type="password" name="password2" class="form-control1" id="floatingPassword" placeholder="Confirm Password"> 
+                </div>
+                  
+                <br>
+                <br>
+                <div class="d-grid">
+                  <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit" style="width:660px;">Update Password</button>
+                  
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</form>

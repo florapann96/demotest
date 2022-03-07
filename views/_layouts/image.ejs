@@ -1,0 +1,78 @@
+</div>
+
+<!--image inserting part-->
+<div id="main" class="slideshow-container">
+
+	<div class="mySlides">
+
+		<div class="numbertext">1 / 4</div>
+
+		<img class="center-fit" src="/images/gallery5.jpg" />
+
+	</div>
+
+	<div class="mySlides">
+
+		<div class="numbertext">2 / 4</div>
+
+		<img class="center-fit" src="/images/gallery4.jpg" />
+		<!--style="width:100%"height="700"-->
+
+	</div>
+	<div class="mySlides">
+
+		<div class="numbertext">3 / 4</div>
+
+		<img class="center-fit" src="/images/gallery3.jpg" />
+		<!--style="width:100%" height="700"-->
+
+	</div>
+	<div class="mySlides">
+
+		<div class="numbertext">4 / 4</div>
+
+		<img class="center-fit" src="/images/dance.jpg" />
+		<!--style="width: 100%"
+            height="700"-->
+
+
+
+	</div>
+</div>
+
+
+<script>
+	var slideIndex = 0;
+	showSlides();
+
+	function showSlides() {
+	var i;
+	var slides = document.getElementsByClassName("mySlides");
+	var dots = document.getElementsByClassName("dot");
+	for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+            setTimeout(showSlides, 5000); // Change image every 2 seconds
+        }
+</script>
+<!--introduction about our webpage-->
+<div class="intro">
+	<br />
+	<div class="content">
+		<h2 class="title">✦✦ Welcome to our website ✦✦</h2>
+		<p class="description" style="font-size:19px;margin-left:10px;margin-right:10px;margin-top:20px">
+			Lightkeepers - as the name implied, calming , the moon , the night sky with stars, bedtime stories and memories as a kid growing up.
+			These memories will be comunicated through art works shown here
+		</p>
+	</div>
+</div>
+
+<br>
+	<br>

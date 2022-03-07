@@ -1,0 +1,95 @@
+<%- include ('_layouts/header'); -%>
+<%- include ('_layouts/image'); -%>
+<h1>......Exciting Books.....</h1>
+ <hr size="100" width="100%" align="center" color="black">
+    <br>
+ <div class="row products">
+    
+    <% savedexcit.forEach(function(products){ %>
+            <div class="col-xs-12 col-md-4 p shop-item">
+                 <a class="pa" href="/products/<%= products.category %>/<%= products.slug %>">
+                    <img class="pimage" src="/product_images/<%= products.id %>/<%= products.image %>" alt="">
+                    </a>
+              <div class="title1" style="margin-top:140px; margin-left:18px">
+                <h3><%= products.title %></h3>
+               <b>Rating:<span class="stars-container stars-<%= products.rating %>">&#9733&#9733&#9733&#9733&#9733</span> <%= products.rating %>/5</b>
+               <a class="vd" href="/products/<%= products.category %>/<%= products.slug %>"  style="margin-left:-14px" >View Details</a>
+            </div>
+            </div>
+        <% }); %>  
+</div>
+
+<h1>......Top choice Books.....</h1>
+ <hr size="100" width="100%" align="center" color="black">
+    <br>
+ <div class="row products">
+    
+    <% savedtop.forEach(function(products){ %>
+            <div class="col-xs-12 col-md-4 p  shop-item">
+                 <a class="pa" href="/products/<%= products.category %>/<%= products.slug %>">
+                    <img class="pimage" src="/product_images/<%= products.id %>/<%= products.image %>" alt="">
+                </a>
+                 <br>
+                <h3><%= products.title %></h3>
+               <b>Rating:<span class="stars-container stars-<%= products.rating %>">&#9733&#9733&#9733&#9733&#9733</span> <%= products.rating %>/5</b>
+                <a class="vd" href="/products/<%= products.category %>/<%= products.slug %>"  style="margin-left:-30px" >View Details</a>
+           
+            </div>
+        <% }); %>  
+</div>
+<br>
+
+<h1>......UpComing Books.....</h1>
+ <hr size="100" width="100%" align="center" color="black">
+    <br>
+ <div class="row products">
+    
+    <% savedupcome.forEach(function(products){ %>
+            <div class="col-xs-12 col-md-4 p  shop-item">
+                 <a class="pa" href="/products/<%= products.category %>/<%= products.slug %>">
+                    <img class="pimage" src="/product_images/<%= products.id %>/<%= products.image %>" alt="">
+                </a>
+                 <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <h3><%= products.title %></h3>
+                <a class="vd" href="/products/<%= products.category %>/<%= products.slug %>">View Details</a>
+            </div>
+        <% }); %>  
+</div>
+<script>
+
+
+<% savedtop.forEach(function(products){ %>
+
+document.getElementsByClassName("stars").innerHTML = getStars(<%= products.rating %>);
+
+function getStars(rating) {
+
+  // Round to nearest half
+  rating = Math.round(rating * 2) / 2;
+  let output = [];
+
+  // Append all the filled whole stars
+  for (var i = rating; i >= 1; i--)
+    output.push('<i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+
+  // If there is a half a star, append it
+  if (i == .5) output.push('<i class="fa fa-star-half-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+
+  // Fill the empty stars
+  for (let i = (5 - rating); i >= 1; i--)
+    output.push('<i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+
+  return output.join('');
+
+  
+}
+ <% }); %> 
+ 
+</script>
+	<%- include ('_layouts/footer'); -%>

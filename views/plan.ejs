@@ -1,0 +1,298 @@
+<%- include ('_layouts/header'); -%>
+<style>
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.top-left {
+  position: absolute;
+  top: 100px;
+  left: 16px;
+}
+.top-center{
+position: absolute;
+  top: 100px;
+  left: 700px;
+
+}
+.top-right {
+  position: absolute;
+  top: 100px;
+  right: 16px;
+}
+.container1{
+  width: 100%
+  height:50%
+
+}
+</style>
+<%if (customer == "false"){%>
+<section class="pricing py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Free Tier -->
+                <div class="col-lg-4">
+                    <div class="card mb-5 mb-lg-0">
+                        <div class="card-body">
+                         <h5 class="card-title text-muted text-uppercase text-center" id="weekly" name="product" title="weekly">Weekly</h5>
+                            <h6 class="card-price text-center" name="valueA" >$1.5<span class="period">/month</span></h6>
+                            <hr>
+                            <ul class="fa-ul">
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Single User</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>5GB Storage</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Public Projects</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Community Access</li>
+                                <li class="text-muted">
+                                    <span class="fa-li"><i class="fas fa-times"></i></span>Unlimited
+                                    Private Projects
+                                </li>
+                                <li class="text-muted">
+                                    <span class="fa-li"><i class="fas fa-times"></i></span>Dedicated
+                                    Phone Support
+                                </li>
+                                <li class="text-muted">
+                                    <span class="fa-li"><i class="fas fa-times"></i></span>Free Subdomain
+                                </li>
+                                <li class="text-muted">
+                                    <span class="fa-li"><i class="fas fa-times"></i></span>Monthly Status
+                                    Reports
+                                </li>
+                            </ul>
+                                 
+                                            
+
+                            <div class="d-grid">
+                              
+                                 <a href='/users/login' class="btn text-uppercase">Purchase</a>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Plus Tier -->
+                <div class="col-lg-4">
+                    <div class="card mb-5 mb-lg-0">
+                        <div class="card-body">
+                             <h5 class="card-title text-muted text-uppercase text-center" id="monthly" name="product" title="monthly">Monthly</h5>
+                            <h6 class="card-price text-center" name="ValueB">$5<span class="period">/month</span></h6>
+                            <hr>
+                            <ul class="fa-ul">
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>5 Users</strong></li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>50GB Storage</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Public Projects</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Community Access</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Private Projects</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Dedicated Phone Support</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Free Subdomain</li>
+                                <li class="text-muted">
+                                    <span class="fa-li"><i class="fas fa-times"></i></span>Monthly Status
+                                    Reports
+                                </li>
+                            </ul>
+                            <div class="d-grid">
+                             
+                               <a href='/users/login' class="btn text-uppercase">Purchase</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pro Tier -->
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-muted text-uppercase text-center" id="yearly" name="product" title="yearly" >Yearly</h5>
+                            <h6 class="card-price text-center" name="ValueC" >$70<span class="period">/month</span></h6>
+                            <hr>
+                            <ul class="fa-ul">
+                                <li>
+                                    <span class="fa-li"><i class="fas fa-check"></i></span><strong>Unlimited Users</strong>
+                                </li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>150GB Storage</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Public Projects</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Community Access</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Private Projects</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Dedicated Phone Support</li>
+                                <li>
+                                    <span class="fa-li"><i class="fas fa-check"></i></span><strong>Unlimited</strong> Free
+                                    Subdomains
+                                </li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Monthly Status Reports</li>
+                            </ul>
+                            <div class="d-grid">
+                             
+                               <a href='/users/login' class="btn text-uppercase">Purchase</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<%}else { %>
+<%if (customer.plan == "none") {%>
+ <section class="pricing py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Free Tier -->
+                <div class="col-lg-4">
+                    <div class="card mb-5 mb-lg-0">
+                        <div class="card-body">
+                         <h5 class="card-title text-muted text-uppercase text-center" id="weekly" name="product" title="weekly">Weekly</h5>
+                            <h6 class="card-price text-center" name="valueA" >$1.5<span class="period">/month</span></h6>
+                            <hr>
+                            <ul class="fa-ul">
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Single User</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>5GB Storage</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Public Projects</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Community Access</li>
+                                <li class="text-muted">
+                                    <span class="fa-li"><i class="fas fa-times"></i></span>Unlimited
+                                    Private Projects
+                                </li>
+                                <li class="text-muted">
+                                    <span class="fa-li"><i class="fas fa-times"></i></span>Dedicated
+                                    Phone Support
+                                </li>
+                                <li class="text-muted">
+                                    <span class="fa-li"><i class="fas fa-times"></i></span>Free Subdomain
+                                </li>
+                                <li class="text-muted">
+                                    <span class="fa-li"><i class="fas fa-times"></i></span>Monthly Status
+                                    Reports
+                                </li>
+                            </ul>
+                                 
+                                            
+
+                            <div class="d-grid">
+                              
+                                 <button class="btn " id="checkout-button" type="submit">Buy now</button>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Plus Tier -->
+                <div class="col-lg-4">
+                    <div class="card mb-5 mb-lg-0">
+                        <div class="card-body">
+                             <h5 class="card-title text-muted text-uppercase text-center" id="monthly" name="product" title="monthly">Monthly</h5>
+                            <h6 class="card-price text-center" name="ValueB">$5<span class="period">/month</span></h6>
+                            <hr>
+                            <ul class="fa-ul">
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>5 Users</strong></li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>50GB Storage</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Public Projects</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Community Access</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Private Projects</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Dedicated Phone Support</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Free Subdomain</li>
+                                <li class="text-muted">
+                                    <span class="fa-li"><i class="fas fa-times"></i></span>Monthly Status
+                                    Reports
+                                </li>
+                            </ul>
+                            <div class="d-grid">
+                             
+                                <button class="btn " id="checkout-button1" type="submit">Buy now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pro Tier -->
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-muted text-uppercase text-center" id="yearly" name="product" title="yearly">Yearly</h5>
+                            <h6 class="card-price text-center" name="ValueC" >$70<span class="period">/month</span></h6>
+                            <hr>
+                            <ul class="fa-ul">
+                                <li>
+                                    <span class="fa-li"><i class="fas fa-check"></i></span><strong>Unlimited Users</strong>
+                                </li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>150GB Storage</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Public Projects</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Community Access</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Private Projects</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Dedicated Phone Support</li>
+                                <li>
+                                    <span class="fa-li"><i class="fas fa-check"></i></span><strong>Unlimited</strong> Free
+                                    Subdomains
+                                </li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Monthly Status Reports</li>
+                            </ul>
+                          <div class="d-grid">
+                             
+                                <button class="btn" id="checkout-button2" type="submit">Buy now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+ <%}else { %>
+       <br>
+       <br>
+       <div>
+       <img class="top-right" src="/images/celebrate.gif" alt="this slowpoke moves"  
+       style="width:30%;height:30%" alt="404 img"/>
+       <img class="top-center" src="/images/celebrate.gif" alt="this slowpoke moves"  
+       style="width:30%;height:30%" alt="404 img"/>
+       <img class="top-left" src="/images/celebrate.gif" alt="this slowpoke moves"  
+       style="width:30%;height:30%" alt="404 img"/>
+       <p class="try" style="font-size:25px;text-align:center; margin-top:50px">  You are currently on the <%- customer.plan %> plan!!! %>
+
+       </p>
+       
+     
+       </div>
+        <hr size="100" width="100%" align="center color:black">
+        <br>
+        <br>
+        <br>
+                <br>
+        <br>
+        <br>
+                <br>
+      
+         <img class="top-left" src="/images/dog.gif" alt="this slowpoke moves"  
+       style="width:30%;height:30%" alt="404 img"/>
+                <img class="top-right" src="/images/bird.gif" alt="this slowpoke moves"  
+       style="width:15%;height:20%" alt="404 img"/>
+       <div style="border-style:groove;background-color:white;height:300px;">
+        <p class="mt-4 text-muted" style="font-size:18px;text-align:center; margin-top:200px">
+          <br>
+          <br>
+          Not happy with your current plan? Cancel or Upgrade by clicking the
+          button below.
+        </p>
+        <br>
+       
+        <button
+          class="btn btn-lg "
+          id="manage-billing-button"
+          type="submit" style="margin-left:1000px;background-color:#e2bc77;border-block-color: #e2bc77;">
+          Manage Billing
+        </button>
+       <br>
+       <br>
+        </div>
+      <% }%>
+ <% }%>
+
+
+ 
+		<!--footer contact page -->
+
+     <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+    <script>
+      var customer = <%- JSON.stringify(customer) %>;
+      console.log(customer);
+      console.log('hello');
+    </script>
+    <script type="text/javascript" src="/js/checkout.js"></script>
+   
+<%- include ('_layouts/footer'); -%>	

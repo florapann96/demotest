@@ -1,0 +1,33 @@
+<%- include ('_layouts/header'); -%>
+<form method="post" action="/users/forget">
+<div class="container-fluid ps-md-0">
+  <div class="row g-0">
+    <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+    <div class="col-md-8 col-lg-6">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9 col-lg-8 mx-auto">
+              <h3 class="login-heading mb-4" style="font-size:30px;">Forgot Password</h3>
+              <br>
+        
+              <form>
+                <div class="form-floating mb-3 loginform">
+                  <input type="email" name="email" class="form-control1" id="floatingInput" placeholder="Email Address">
+                  
+                <br>
+                <br>
+                <br>
+                <div class="d-grid">
+                  <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit" style="width:660px;">Reset Password</button>
+                  
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</form>

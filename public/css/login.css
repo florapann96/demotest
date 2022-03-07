@@ -1,0 +1,37 @@
+.login {
+    min-height: 100vh;
+}
+
+.bg-image {
+    background-image: url('/images/bagan.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.form-control1 {
+    height: 60px;
+    width: 90%;
+    box-shadow: none;
+    font-weight: normal;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 2px solid #6786ef;
+    padding: 20px;
+    border-color: #e2bc77
+}
+.login-heading {
+    font-family: 'Varela Round', sans-serif;
+    font-weight: bold;
+}
+
+.btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+    background-color: #e9ac3e;
+    border-color: #e9ac3e;
+}
+    .btn-login:hover {
+        background-color: #d49523;
+        border-color: #d49523;
+    }
+

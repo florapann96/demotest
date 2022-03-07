@@ -1,0 +1,48 @@
+<%- include ('_layouts/header'); -%>
+<form method="post" action="/users/login">
+<div class="container-fluid ps-md-0">
+  <div class="row g-0">
+  <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div> 
+    <div class="col-md-8 col-lg-6">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9 col-lg-8 mx-auto">
+              <h3 class="login-heading mb-4" style="font-size:30px;">Welcome back!</h3>
+              <br>
+              <!-- Sign In Form -->
+              <form>
+                <div class="form-floating mb-3 loginform">
+                  <input type="email" name="email" class="form-control1" id="floatingInput" placeholder="Email Address">
+                  
+                </div>
+                <br>
+                <div class="form-floating mb-3 loginform">
+                  <input type="password" name="password" class="form-control1" id="floatingPassword" placeholder="Password">
+                  
+                </div>
+                <br>
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
+                  <label class="form-check-label" for="rememberPasswordCheck">
+                    Remember password
+                  </label>
+                  <div class="text-right" style="margin-top:-20px;margin-right:60px;">
+                    <a class="small" href="/users/forget">Forgot password?</a>
+                  </div>
+                </div>
+                <br>
+                <div class="d-grid">
+                  <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit" style="width: 660px;">Sign in</button>
+                  
+                </div>
+                 <br>Don't Have Account?  Create Account<a href='/users/register' class="small">Here</a></b>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</form>

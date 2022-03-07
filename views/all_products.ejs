@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+         <meta charset="utf-8">
+       
+        <meta name="viewport" content="width=device-width, initial-scale=0.67" />
+
+    <title>LightKeeprs-Burma</title>
+    <link rel="icon" type="image/x-icon" href="/icon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela+Round">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!--signin css-->
+   <link rel="stylesheet" href="/css/login.css" />
+
+    <!--call the stylesheet css part-->
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/test.css">
+     <link rel="stylesheet" href="/css/layer.css" />
+    </head>
+
+    <body>
+        <style>
+    .search-btn {
+    display: flex;
+    text-align: center;
+    height: 51px;
+    width: 40px;
+    outline: none;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 10px;
+    margin-right:60px;
+    margin-top:-35px;
+    border-left: none;
+    background: none;
+    font-size: 20px;
+    border-left: 0px;
+   
+}
+</style>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+            <div class="icon">
+            <img src="/images/lighthouse.jpg" alt="Logo Image">
+        </div>
+
+        <a href="#" class="navbar-brand">Lightkeepers-<b>Burma</b></a>
+                </div>
+                        <!--toggle button for switch language-->
+      <!--  <label class="switch">
+            <input type="checkbox" id="togBtn">
+            <div class="slider round">
+                <span language='myanmar' class="on">MYN</span>
+                <span language='english' class="off">ENG</span>
+            </div>
+        </label> -->
+        <div id='google_translate_element'></div>
+
+           <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
+            <div class="navbar-nav">
+                <a href="/" class="nav-item nav-link cat1"> Home-Page</a>
+                <div class="nav-item dropdown">
+                    <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle cat2">Categories</a>
+                 
+                    <div class="dropdown-menu">
+                    <li><a id="GFG" href="/products">&nbsp;&nbsp;&nbsp;All categories</a></li>
+                        <% categories.forEach(function(c){ %>
+                            <li class="list-group-item"><a id="GFG" href="/products/<%= c.slug %>"><%= c.title %></a></li>
+                        <% }); %>
+
+
+                    </div>
+                </div>
+                <!--<a href="#" class="nav-item nav-link active">Blog</a>-->
+                <a href="#" class="nav-item nav-link cat3"> Blog</a>
+                <a href="#" class="nav-item nav-link cat4">Collections</a>
+             
+                <% if (user) { %>
+                <a href="/users/plan" class="nav-item nav-link cat6">Payment</a>
+                <% } else {%>
+                 <a href="/users/plan" class="nav-item nav-link cat6">Payment</a>
+                <% }%>
+                <a href="about.html" class="nav-item nav-link cat5">About Us<b style="color:#f2f4f5">1</b></a>
+                
+            </div>
+            <div class="navbar-form form-inline">  
+          <div class="input-group search-box ">
+                  <form class="search" action="/search" method="GET">
+                     <input class="form-control searchplaceholder" type="text" placeholder="Search Title..." name="productName">
+                     <button class="input-group-text search-btn" ><i class="fa" style="font-size:25px"> &#xf002; </i></button>
+                   
+                    </form>
+
+
+          </div>
+      </div>
+            
+            <div class="dropdown" style=" margin-bottom:10px;">
+
+             
+                           <% if (user) { %>
+                           
+                            <a href="/checkout" class="btn wishlist-btn" style="background-color: #e2bc77; margin-right: 20px; margin-left: 20px; 
+                            margin-top: 9px; height: 100%; width:100%;  text-align: center; padding: 6px; color: white;"><i class="fa fa-heart"  style="color:black"></i> FavList(
+                                <% if (typeof cart !== "undefined") { %>
+                                <%= cart.length %>
+                                <% } else {%>
+                                0
+                                <% } %>
+                            )</a>
+                            <% } else {%>
+                             <a href="/checkout" class="btn wishlist-btn" style="background-color:#e2bc77; margin-right: 20px; margin-left: 20px; 
+                            margin-top: 9px; height: 100%; width:100%;  text-align: center; padding: 6px;"><i class="fa fa-heart"  style="color:black" ></i> FavList</a>
+                             <% }%>
+                        
+            </div>
+
+                  <div class="navbar-nav ml-auto action-buttons">
+
+                        <% if (user) { %>
+                        <li><a href="/users/logout" class="td1 nav-link dropdown-toggle mr-4" ><i class="fa fa-user" style="font-size:23px;"></i>  <%= user.username %> <i class="fa fa-sign-out" style="font-size:23px;color:#e2bc77"></i></a></li>
+                        <% } else {%>
+                      <div class="box1">
+                        <li>
+                        <a href="/users/register"  class="td2 btn dropdown-toggle sign-up-btn">Sign Up</a>
+                        </li>
+                        </div>
+                        <div class="box2">
+                        <li><a href="/users/login"  class="td1 nav-link dropdown-toggle mr-4" >Log in</a></li>
+                        </div>
+                        <% } %>
+                        <% if (user && user.admin == 1) { %>
+                        <li><a href="/admin/pages"  class="td1 nav-link dropdown-toggle mr-4" >Admin Area</a></li>
+                        <% }%>
+
+
+
+            </div>  
+
+ <script>
+ function googleTranslateElementInit() {
+ new google.translate.TranslateElement({
+ pageLanguage: 'en',
+ autoDisplay: 'true',
+ includedLanguages:'my,en',
+ layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+ }, 'google_translate_element');
+ }
+ </script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" type="text/javascript"></script>
+        </nav>
+      
+            <%- messages('messages', locals) %>
+            
+            <% if (errors) {%>
+                <% errors.forEach(function(error) { %>
+                <div class="alert alert-danger">
+                    <%= error.msg %>
+                </div>
+                <% });%>
+            <% }%>
+
+</div>
+
+<div class="status" id="myBtnContainer">
+  <button class="status1 active" onclick="filterSelection('all')"> Show all</button>
+  <button class="status1" onclick="filterSelection('ongoing')"> Ongoing</button>
+  <button class="status1" onclick="filterSelection('completed')"> Completed</button>
+
+</div>
+
+
+<div class="row products">
+ <div id="jar" style="display:none">
+    <% savedproduct.forEach(function(products){ %>
+           <div class="content">
+              <div class="filterDiv <%= products.status %>">
+              
+                <a class="pa " href="/products/<%= products.category %>/<%= products.title %>">
+                    <img class="pimage  " src="/product_images/<%= products.id %>/<%= products.image %>" alt="">
+                </a>
+                <br>
+                <br>
+                <br>
+                <br>
+                <h3 ><%= products.title %></h3>
+                <b>Rating:<span class="stars-container stars-<%= products.rating %>">&#9733&#9733&#9733&#9733&#9733</span> <%= products.rating %>/5</b>
+                <br>
+                <a class="vd " href="/products/<%= products.category %>/<%= products.slug %>" style="margin-left:-12px">View Details</a>
+               
+          </div>
+           </div>
+        <% }); %>
+
+</div>
+</div>
+<div class="pagination">
+</div>
+
+<script>
+filterSelection("all")
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("filterDiv");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+}
+
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
+
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);     
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+// Add active class to the current button (highlight it)
+var btnContainer = document.getElementById("myBtnContainer");
+var btns = btnContainer.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function(){
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+
+</script>
+<script>
+// Returns an array of maxLength (or less) page numbers
+// where a 0 in the returned array denotes a gap in the series.
+// Parameters:
+//   totalPages:     total number of pages
+//   page:           current page
+//   maxLength:      maximum size of returned array
+function getPageList(totalPages, page, maxLength) {
+    if (maxLength < 5) throw "maxLength must be at least 5";
+
+    function range(start, end) {
+        return Array.from(Array(end - start + 1), (_, i) => i + start); 
+    }
+
+    var sideWidth = maxLength < 9 ? 1 : 2;
+    var leftWidth = (maxLength - sideWidth*2 - 3) >> 1;
+    var rightWidth = (maxLength - sideWidth*2 - 2) >> 1;
+    if (totalPages <= maxLength) {
+        // no breaks in list
+        return range(1, totalPages);
+    }
+    if (page <= maxLength - sideWidth - 1 - rightWidth) {
+        // no break on left of page
+        return range(1, maxLength - sideWidth - 1)
+            .concat(0, range(totalPages - sideWidth + 1, totalPages));
+    }
+    if (page >= totalPages - sideWidth - 1 - rightWidth) {
+        // no break on right of page
+        return range(1, sideWidth)
+            .concat(0, range(totalPages - sideWidth - 1 - rightWidth - leftWidth, totalPages));
+    }
+    // Breaks on both sides
+    return range(1, sideWidth)
+        .concat(0, range(page - leftWidth, page + rightWidth),
+                0, range(totalPages - sideWidth + 1, totalPages));
+}
+
+// Below is an example use of the above function.
+$(function () {
+    // Number of items and limits the number of items per page
+    var numberOfItems = $("#jar .content").length;
+    var limitPerPage = 5;
+    // Total pages rounded upwards
+    var totalPages = Math.ceil(numberOfItems / limitPerPage);
+    // Number of buttons at the top, not counting prev/next,
+    // but including the dotted buttons.
+    // Must be at least 5:
+    var paginationSize = 7; 
+    var currentPage;
+
+    function showPage(whichPage) {
+        if (whichPage < 1 || whichPage > totalPages) return false;
+        currentPage = whichPage;
+        $("#jar .content").hide()
+            .slice((currentPage-1) * limitPerPage, 
+                    currentPage * limitPerPage).show();
+        // Replace the navigation items (not prev/next):            
+        $(".pagination li").slice(1, -1).remove();
+        getPageList(totalPages, currentPage, paginationSize).forEach( item => {
+            $("<li>").addClass("page-item")
+                     .addClass(item ? "current-page" : "disabled")
+                     .toggleClass("active", item === currentPage).append(
+                $("<a>").addClass("page-link").attr({
+                    href: "javascript:void(0)"}).text(item || "...")
+            ).insertBefore("#next-page");
+        });
+        // Disable prev/next when at first/last page:
+        $("#previous-page").toggleClass("disabled", currentPage === 1);
+        $("#next-page").toggleClass("disabled", currentPage === totalPages);
+        return true;
+    }
+
+    // Include the prev/next buttons:
+    $(".pagination").append(
+        $("<li>").addClass("page-item").attr({ id: "previous-page" }).append(
+            $("<a>").addClass("page-link").attr({
+                href: "javascript:void(0)"}).text("Prev")
+        ),
+        $("<li>").addClass("page-item").attr({ id: "next-page" }).append(
+            $("<a>").addClass("page-link").attr({
+                href: "javascript:void(0)"}).text("Next")
+        )
+    );
+    // Show the page links
+    $("#jar").show();
+    showPage(1);
+
+    // Use event delegation, as these items are recreated later    
+    $(document).on("click", ".pagination li.current-page:not(.active)", function () {
+        return showPage(+$(this).text());
+    });
+    $("#next-page").on("click", function () {
+        return showPage(currentPage+1);
+    });
+
+    $("#previous-page").on("click", function () {
+        return showPage(currentPage-1);
+    });
+});
+</script>
+		</body>
+		</html>

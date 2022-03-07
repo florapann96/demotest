@@ -1,0 +1,144 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>demotest</Name>
+    <RootNamespace>demotest</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>31696955-88a8-4adb-937e-9ad4316cfe7f</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>server.js</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <NodejsPort>1337</NodejsPort>
+    <StartWebBrowser>true</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="config\auth.js" />
+    <Content Include="config\passport.js" />
+    <Content Include="config\database.js" />
+    <Content Include="models\upcome_product.js" />
+    <Content Include="models\user.js" />
+    <Content Include="models\product.js" />
+    <Content Include="models\category.js" />
+    <Content Include="models\page.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="database.js" />
+    <Content Include="public\css\adminstyle.css" />
+    <Content Include="public\css\style.css">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="public\css\test.css" />
+    <Content Include="public\images\noimage.png" />
+    <Content Include="public\js\main.js" />
+    <Content Include="public\js\stripe.js" />
+    <Content Include="public\js\test.js" />
+    <Content Include="routes\admin_products.js" />
+    <Content Include="routes\admin_categories.js" />
+    <Content Include="routes\admin_pages.js" />
+    <Content Include="routes\cart.js" />
+    <Content Include="routes\upcome_products.js" />
+    <Content Include="routes\users.js" />
+    <Content Include="routes\products.js" />
+    <Content Include="routes\pages.js" />
+    <Content Include="server.js" />
+    <Content Include="package.json" />
+    <Content Include="README.md" />
+    <Content Include="views\admin\addupcome_product.ejs" />
+    <Content Include="views\admin\editupcome_product.ejs" />
+    <Content Include="views\admin\plan.ejs" />
+    <Content Include="views\admin\products.ejs" />
+    <Content Include="views\admin\add_product.ejs" />
+    <Content Include="views\admin\edit_product.ejs" />
+    <Content Include="views\admin\categories.ejs" />
+    <Content Include="views\admin\add_category.ejs" />
+    <Content Include="views\admin\edit_category.ejs" />
+    <Content Include="views\admin\edit_page.ejs" />
+    <Content Include="views\admin\pages.ejs" />
+    <Content Include="views\admin\add_page.ejs" />
+    <Content Include="views\admin\upcome_products.ejs" />
+    <Content Include="views\cat_products.ejs" />
+    <Content Include="views\excit.ejs" />
+    <Content Include="views\login.ejs" />
+    <Content Include="views\register.ejs" />
+    <Content Include="views\checkout.ejs" />
+    <Content Include="views\product.ejs" />
+    <Content Include="views\all_products.ejs" />
+    <Content Include="views\messages.ejs" />
+    <Content Include="views\index.ejs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\_layouts\adminheader.ejs" />
+    <Content Include="views\_layouts\adminfooter.ejs" />
+    <Content Include="views\_layouts\footer.ejs" />
+    <Content Include="views\_layouts\header.ejs" />
+    <Content Include="views\_layouts\image.ejs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="models\" />
+    <Folder Include="config\" />
+    <Folder Include="public\" />
+    <Folder Include="public\css\" />
+    <Folder Include="public\images\" />
+    <Folder Include="public\product_images\" />
+    <Folder Include="public\js\" />
+    <Folder Include="routes\" />
+    <Folder Include="views\" />
+    <Folder Include="views\admin\" />
+    <Folder Include="views\_layouts\" />
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
