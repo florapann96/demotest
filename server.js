@@ -71,7 +71,7 @@ app.use(session({
     secret: 'keyboard cat',
     resave: true,
     saveUninitialized: true,
-    store: new MongoStore({ mongoUrl: 'mongodb://localhost:27017/myuser' }),
+    store: new MongoStore({ mongoUrl: 'mongodb+srv://pppadmin:testing123@cluster0.pzqdl.mongodb.net/bookdemo?retryWrites=true&w=majority' }),
     cooke: { maxAge: 180 * 60 * 1000 }
 }));
 app.use('/users/webhook', bodyParser.raw({ type: 'application/json' }));
