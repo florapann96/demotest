@@ -21,7 +21,7 @@ mongoose.connect(config.database, {
 
     
     useNewUrlParser: true,
-    useUnifiedTopology: false, // commented out currently
+    useUnifiedTopology: true, // commented out currently
 });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
