@@ -41,7 +41,6 @@
   },
   "scripts": {
     "start": "node server.js"
-
   },
   "keywords": [],
   "license": "ISC"
