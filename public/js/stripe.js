@@ -22,8 +22,8 @@ const createCheckoutSession = async (customerID, price) => {
             }
         ],
 
-        success_url: 'https://lightkeepers-burma.herokuapp.com//success?session_id={CHECKOUT_SESSION_ID}',
-        cancel_url: 'https://lightkeepers-burma.herokuapp.com//failed'
+        success_url: 'https://lightkeepers-burma.herokuapp.com/success?session_id={CHECKOUT_SESSION_ID}',
+        cancel_url: 'https://lightkeepers-burma.herokuapp.com/failed'
     })
 
     return session
