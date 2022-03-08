@@ -22,8 +22,8 @@ const createCheckoutSession = async (customerID, price) => {
             }
         ],
 
-        success_url: 'http://localhost:2000/success?session_id={CHECKOUT_SESSION_ID}',
-        cancel_url: 'http://localhost:2000/failed'
+        success_url: 'https://lightkeepers-burma.herokuapp.com//success?session_id={CHECKOUT_SESSION_ID}',
+        cancel_url: 'https://lightkeepers-burma.herokuapp.com//failed'
     })
 
     return session
@@ -31,7 +31,7 @@ const createCheckoutSession = async (customerID, price) => {
 const createBillingSession = async (customer) => {
     const session = await Stripe.billingPortal.sessions.create({
         customer,
-        return_url: 'https://localhost:2000'
+        return_url: 'https://lightkeepers-burma.herokuapp.com/'
     })
     return session
 }
