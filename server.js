@@ -8,6 +8,7 @@ var config = require('./config/database');
 var session = require('express-session');
 var expressValidator = require('express-validator');
 var MongoStore = require('connect-mongo');
+
 var fileUpload = require('express-fileupload');
 var passport = require('passport');
 var async = require('async');
@@ -15,6 +16,7 @@ var crypto = require('crypto');
 var Product = require('./models/product');
 var Cart = require('./models/cart');
 var User = require('./src/user/usermodel');
+var nodemailer = require('nodemailer');
 //connect to DB
 
 mongoose.connect(config.database, {
@@ -156,6 +158,11 @@ app.get('/success', (req, res) => {
 
 })
 
+app.get('/about', (req, res) => {
+    res.render('aboutus')
+
+})
+
 app.get('/failed', (req, res) => {
 
     res.redirect('/users/plan')
@@ -163,6 +170,7 @@ app.get('/failed', (req, res) => {
 })
 
 // Set routes
+
 
 app.get('/search', getproduct, getcart1, renderForm);
 
@@ -173,7 +181,7 @@ function getproduct(req, res, next) {
 
         if (err)
             console.log(err);
-
+        
         res.locals.savedproduct = products;
         next();
     });
@@ -205,6 +213,7 @@ function getcart1(req, res, next) {
 };
 
 function renderForm(req, res) {
+    
     res.render("search");
 };
 //app.get('/search', async (req, res) => {

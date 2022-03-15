@@ -39,17 +39,22 @@
 
 	</div>
 </div>
-
-
+<br>
+<div style="text-align:center">
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+</div>
 <script>
-	var slideIndex = 0;
-	showSlides();
+  var slideIndex = 0;
+  showSlides();
 
-	function showSlides() {
-	var i;
-	var slides = document.getElementsByClassName("mySlides");
-	var dots = document.getElementsByClassName("dot");
-	for (i = 0; i < slides.length; i++) {
+  function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
                 slides[i].style.display = "none";
             }
             slideIndex++;
@@ -59,9 +64,11 @@
             }
             slides[slideIndex - 1].style.display = "block";
             dots[slideIndex - 1].className += " active";
-            setTimeout(showSlides, 5000); // Change image every 2 seconds
+            setTimeout(showSlides, 3000); // Change image every 2 seconds
         }
 </script>
+
+
 <!--introduction about our webpage-->
 <div class="intro">
 	<br />

@@ -6,6 +6,7 @@ var Stripe = require('../public/js/stripe')
 var async = require('async');
 var crypto = require('crypto');
 var nodemailer = require('nodemailer');
+var flash = require('connect-flash');
 // Get Users model
 var User = require('../src/user/usermodel');
 const UserService = require('../src/user/index')
@@ -352,7 +353,37 @@ router.post('/reset/:token', function (req, res) {
         res.redirect('/users/login');
     });
 });
+router.get('/contact', function (req, res, next) {
+    res.render('contact');
 
+})
+router.post('/contact', function (req, res, next) {
+    var email = req.body.email;
+    var message = req.body.message;
+
+    var smtpTransport = nodemailer.createTransport('SMTP', {
+        service: 'Gmail',
+        auth: {
+            user: 'lighkeepersburma@gmail.com', //email from
+            pass: 'Asd123!@#' //password 
+        }
+    });
+    var mailOptions = {
+
+
+        to: 'lighkeepersburma@gmail.com', // used as RCPT TO: address for SMTP
+        subject: email,
+        text: message
+
+
+
+    }
+    smtpTransport.sendMail(mailOptions, function (err) {
+        req.flash('success','Thank you for contacting us! An e-mail has been sent to admin');
+        res.redirect('/');
+    });
+    
+})
 router.get('/plan', async (req, res, next) => {
 
 
