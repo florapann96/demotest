@@ -203,7 +203,7 @@ router.get('/edit-product/:id', isAdmin, function (req, res) {
                 console.log(err);
                 res.redirect('admin/products');
             } else {
-                var galleryDir = 'public/product_images/' + p._id + '/gallery';
+                var galleryDir = 'public/product_images/' + p._id;
                 var galleryImages = null;
 
                 fs.readdir(galleryDir, function (err, files) {
