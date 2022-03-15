@@ -36,7 +36,7 @@
              <a href="/users/plan" class="btn action_btn read" >Subscribe</a>
                
            <% } else {%>
-                <a href="/product_images/<%= p._id %>/<%= p.pdf %>#toolbar=0" class="btn action_btn read" >Start Read</a>
+                <a href="/product_images/<%= p._id %>/<%= p.pdf %>" class="btn action_btn read" >Start Read</a>
                
            <% } %>
             <p> <button id="btnOK" onclick="window.location.href='/cart/add/<%= p.slug %>';" class="btn action_btn favbtn">Fav <i class="fa fa-heart"></i></button>
