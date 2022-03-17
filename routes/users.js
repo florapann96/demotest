@@ -15,9 +15,9 @@ const hasPlan = require('../src/middleware/hasPlan')
 var Cart = require('../models/cart');
 
 const productToPriceMap = {
-    weekly: 'price_1KTHksCIYWxab9Wx4UdZh10D',
-    monthly: 'price_1KTHlLCIYWxab9WxYC2Oz6Y9',
-    yearly: 'price_1KWul9CIYWxab9WxfmjjqEnZ'
+    weekly: 'price_1KeJxCCIYWxab9WxtWIxFViv',
+    monthly: 'price_1KeJxxCIYWxab9WxTPEJ6pZp',
+    yearly: 'price_1KeJyXCIYWxab9WxjZlITkWA'
 }
 
 /*
@@ -545,16 +545,16 @@ router.post('/webhook', async (req, res) => {
         case 'customer.subscription.created': {
             const user = await UserService.getUserByBillingID(data.customer)
 
-            if (data.plan.id === 'price_1KTHksCIYWxab9Wx4UdZh10D') {
+            if (data.plan.id === 'price_1KeJxCCIYWxab9WxtWIxFVivD') {
                 console.log('You are talking about basic product')
                 user.plan = 'weekly'
             }
 
-            if (data.plan.id === 'price_1KTHlLCIYWxab9WxYC2Oz6Y9') {
+            if (data.plan.id === 'price_1KeJxxCIYWxab9WxTPEJ6pZp') {
                 console.log('You are talking about pro product')
                 user.plan = 'monthly'
             }
-            if (data.plan.id === 'price_1KWul9CIYWxab9WxfmjjqEnZ') {
+            if (data.plan.id === 'price_1KeJyXCIYWxab9WxjZlITkWA') {
                 console.log('You are talking about pro product')
                 user.plan = 'yearly'
             }
@@ -570,16 +570,16 @@ router.post('/webhook', async (req, res) => {
             // started trial
             const user = await UserService.getUserByBillingID(data.customer)
 
-            if (data.plan.id == 'price_1KTHksCIYWxab9Wx4UdZh10D') {
+            if (data.plan.id == 'price_1KeJxCCIYWxab9WxtWIxFViv') {
                 console.log('You are talking about weekly product')
                 user.plan = 'weekly'
             }
 
-            if (data.plan.id === 'price_1KTHlLCIYWxab9WxYC2Oz6Y9') {
+            if (data.plan.id === 'price_1KeJxxCIYWxab9WxTPEJ6pZp') {
                 console.log('You are talking about monthly product')
                 user.plan = 'monthly'
             }
-            if (data.plan.id === 'price_1KWul9CIYWxab9WxfmjjqEnZ') {
+            if (data.plan.id === 'price_1KeJyXCIYWxab9WxjZlITkWA') {
                 console.log('You are talking about yearly product')
                 user.plan = 'yearly'
             }
