@@ -158,10 +158,7 @@ app.get('/success', (req, res) => {
 
 })
 
-app.get('/about', (req, res) => {
-    res.render('aboutus')
 
-})
 
 app.get('/failed', (req, res) => {
 

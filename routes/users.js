@@ -353,10 +353,37 @@ router.post('/reset/:token', function (req, res) {
         res.redirect('/users/login');
     });
 });
-router.get('/contact', function (req, res, next) {
-    res.render('contact');
 
+router.get('/about', (req, res) => {
+    
+    if (req.isAuthenticated()) {
+        Cart.find({ owner: req.user._id }, function (err, cart) {
+            if (err) {
+                console.log(err);
+            }
+
+            res.locals.cart = cart;
+            res.render('aboutus', {
+                cart: cart
+            })
+
+        })
+    }
+    else {
+
+        var cart = { cart: '0' }
+        res.locals.cart = cart;
+        res.render('aboutus', {
+            cart: cart
+        })
+        console.log('user is not logged in');
+    }
+    
+   
+   
 })
+
+
 router.post('/contact', function (req, res, next) {
     var email = req.body.email;
     var message = req.body.message;
@@ -409,6 +436,48 @@ router.get('/plan', async (req, res, next) => {
 
 
 });
+router.get('/contact', getproduct, getcart1, renderForm);
+
+function getproduct(req, res, next) {
+    // Code here
+
+
+
+    next();
+
+};
+
+
+
+function getcart1(req, res, next) {
+    // Code here
+    if (req.isAuthenticated()) {
+        Cart.find({ owner: req.user._id }, function (err, cart) {
+            if (err) {
+                console.log(err);
+            }
+
+            res.locals.cart = cart;
+            console.log(cart)
+            next();
+
+        })
+    }
+    else {
+
+        var cart = { cart: '0' }
+        res.locals.cart = cart;
+        next();
+        console.log('user is not logged in');
+    }
+
+
+};
+
+function renderForm(req, res) {
+    res.render("contact");
+};
+
 router.post('/checkout', setCurrentUser, async (req, res) => {
     const customer = req.user
     const { product, customerID } = req.body
