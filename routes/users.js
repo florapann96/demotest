@@ -15,9 +15,9 @@ const hasPlan = require('../src/middleware/hasPlan')
 var Cart = require('../models/cart');
 
 const productToPriceMap = {
-    weekly: 'price_1KeJxCCIYWxab9WxtWIxFViv',
-    monthly: 'price_1KeJxxCIYWxab9WxTPEJ6pZp',
-    yearly: 'price_1KeJyXCIYWxab9WxjZlITkWA'
+    weekly: 'price_1KTHksCIYWxab9Wx4UdZh10D',
+    monthly: 'price_1KTHlLCIYWxab9WxYC2Oz6Y9',
+    yearly: 'price_1KWul9CIYWxab9WxfmjjqEnZ'
 }
 
 /*
@@ -96,7 +96,7 @@ router.get('/register', function (req, res) {
 
 //});
 
-router.post('/register', async function(req, res, next) {
+router.post('/register', async function (req, res, next) {
 
     var name = req.body.name;
     var email = req.body.email;
@@ -132,7 +132,7 @@ router.post('/register', async function(req, res, next) {
                 admin: 0,
                 plan: 'none',
                 endDate: null
-                });
+            });
             bcrypt.genSalt(10, function (err, salt) {
 
                 bcrypt.hash(customer.password, salt, function (err, hash) {
@@ -161,12 +161,12 @@ router.post('/register', async function(req, res, next) {
         } catch (e) {
             console.log(e)
             res.status(200).json({ e })
-            
+
         }
 
 
     }
-    
+
 });
 /*
  * GET login
@@ -184,15 +184,13 @@ router.get('/login', async function (
     req,
     res,
     next
-)
-
-{
+) {
     res.status(200).render('login.ejs')
 })
 /*
  * POST login
  */
-router.post('/login', async (req, res, next) =>{
+router.post('/login', async (req, res, next) => {
 
     var email = req.body.email;
     let customer = await UserService.getUserByEmail(email)
@@ -212,8 +210,8 @@ router.post('/login', async (req, res, next) =>{
         failureRedirect: '/users/login',
         failureFlash: true
     })(req, res, next);
-   
-   
+
+
 });
 
 router.get('/forget', function (req, res) {
@@ -282,14 +280,14 @@ router.get('/reset/:token', function (req, res) {
         }
         console.log(user.resetPasswordToken);
         res.render('reset', {
-            
+
             token: user.resetPasswordToken
         });
     });
 });
 
 router.post('/reset/:token', function (req, res) {
-    
+
     async.waterfall([
         function (done) {
             User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function (err, user) {
@@ -355,7 +353,7 @@ router.post('/reset/:token', function (req, res) {
 });
 
 router.get('/about', (req, res) => {
-    
+
     if (req.isAuthenticated()) {
         Cart.find({ owner: req.user._id }, function (err, cart) {
             if (err) {
@@ -378,9 +376,9 @@ router.get('/about', (req, res) => {
         })
         console.log('user is not logged in');
     }
-    
-   
-   
+
+
+
 })
 
 
@@ -406,10 +404,10 @@ router.post('/contact', function (req, res, next) {
 
     }
     smtpTransport.sendMail(mailOptions, function (err) {
-        req.flash('success','Thank you for contacting us! An e-mail has been sent to admin');
+        req.flash('success', 'Thank you for contacting us! An e-mail has been sent to admin');
         res.redirect('/');
     });
-    
+
 })
 router.get('/plan', async (req, res, next) => {
 
@@ -418,20 +416,20 @@ router.get('/plan', async (req, res, next) => {
     console.log(req.session);
     let customer = await UserService.getUserByEmail(email)
     if (!customer) {
-        res.render('plan.ejs', {customer: 'false'})
+        res.render('plan.ejs', { customer: 'false' })
         console.log(customer)
     } else {
-        
+
         Cart.find({ owner: req.user._id }, function (err, cart) {
             if (err) {
                 console.log(err);
             }
 
             res.locals.cart = cart;
-            res.render('plan.ejs', { customer , cart})
+            res.render('plan.ejs', { customer, cart })
 
         });
-        
+
     }
 
 
@@ -486,22 +484,22 @@ router.post('/checkout', setCurrentUser, async (req, res) => {
 
     try {
         const session = await Stripe.createCheckoutSession(customerID, price)
-        
+
         console.log(session.payment_status)
 
-            customer.plan = product
-            customer.hasTrial = false
-            customer.endDate = null
+        customer.plan = product
+        customer.hasTrial = false
+        customer.endDate = null
         console.log(customer.plan)
         /*customer.save()*/
         res.send({
             sessionId: session.id
         })
-        
-            
-        
 
-        
+
+
+
+
     } catch (e) {
         console.log(e)
         res.status(400)
@@ -534,7 +532,7 @@ router.post('/webhook', async (req, res) => {
         console.log(err)
         return res.sendStatus(400)
     }
-   
+
     const data = event.data.object
 
     console.log(event.type, data)
@@ -547,16 +545,16 @@ router.post('/webhook', async (req, res) => {
         case 'customer.subscription.created': {
             const user = await UserService.getUserByBillingID(data.customer)
 
-            if (data.plan.id === 'price_1KeJxCCIYWxab9WxtWIxFVivD') {
+            if (data.plan.id === 'price_1KTHksCIYWxab9Wx4UdZh10D') {
                 console.log('You are talking about basic product')
                 user.plan = 'weekly'
             }
 
-            if (data.plan.id === 'price_1KeJxxCIYWxab9WxTPEJ6pZp') {
+            if (data.plan.id === 'price_1KTHlLCIYWxab9WxYC2Oz6Y9') {
                 console.log('You are talking about pro product')
                 user.plan = 'monthly'
             }
-            if (data.plan.id === 'price_1KeJyXCIYWxab9WxjZlITkWA') {
+            if (data.plan.id === 'price_1KWul9CIYWxab9WxfmjjqEnZ') {
                 console.log('You are talking about pro product')
                 user.plan = 'yearly'
             }
@@ -572,16 +570,16 @@ router.post('/webhook', async (req, res) => {
             // started trial
             const user = await UserService.getUserByBillingID(data.customer)
 
-            if (data.plan.id == 'price_1KeJxCCIYWxab9WxtWIxFViv') {
+            if (data.plan.id == 'price_1KTHksCIYWxab9Wx4UdZh10D') {
                 console.log('You are talking about weekly product')
                 user.plan = 'weekly'
             }
 
-            if (data.plan.id === 'price_1KeJxxCIYWxab9WxTPEJ6pZp') {
+            if (data.plan.id === 'price_1KTHlLCIYWxab9WxYC2Oz6Y9') {
                 console.log('You are talking about monthly product')
                 user.plan = 'monthly'
             }
-            if (data.plan.id === 'price_1KeJyXCIYWxab9WxjZlITkWA') {
+            if (data.plan.id === 'price_1KWul9CIYWxab9WxfmjjqEnZ') {
                 console.log('You are talking about yearly product')
                 user.plan = 'yearly'
             }
@@ -634,7 +632,7 @@ router.post('/webhook', async (req, res) => {
 //        if (user) {
 
 //        req.logIn(user, function (err) {
-            
+
 //            if (err) { return next(err); }
 //            req.flash('successfully logged in');
 //            res.redirect('/');
