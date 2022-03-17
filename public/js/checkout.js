@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    const publishableKey = 'pk_live_51KSdKRCIYWxab9WxdRF5oHmVBexAWTabJLymGZTQSou8eNrwvNJAnQMIlXBAutTf1vLFJE62EKOpZ7b9EQMsKGqU00u07qdBu6'
+    const publishableKey = 'pk_test_51KSdKRCIYWxab9Wxj9l49fT8mxiIO4qLRPY6tQ1roj8JlHQ098a4EPIhK3j33cRICgoePop89dDkFB32Vthyqpus00aGrclZ7S'
 
     const stripe = Stripe(
         publishableKey)
