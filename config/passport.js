@@ -1,6 +1,7 @@
 var LocalStrategy = require('passport-local').Strategy;
 /*var User = require('../models/user');*/
 var User = require('../src/user/usermodel');
+const UserService = require('../src/user/index')
 var bcrypt = require('bcryptjs');
 const flash = require('connect-flash');
 

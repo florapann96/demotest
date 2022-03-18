@@ -192,6 +192,9 @@ router.get('/login', async function (
  */
 router.post('/login', async (req, res, next) => {
 
+    req.checkBody('email', 'Email is required!').isEmail();
+    req.checkBody('password', 'Password is required!').notEmpty();
+
     var email = req.body.email;
     let customer = await UserService.getUserByEmail(email)
     let customerInfo = {}
