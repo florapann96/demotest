@@ -527,8 +527,8 @@ router.post('/webhook', async (req, res) => {
         /*event = Stripe.createWebhook(req.body, req.header('Stripe-Signature'))*/
         event = Stripe.createWebhook(req.body, signature)
     } catch (err) {
-        //console.log(signature)
-        //console.log(req.body)
+        console.log(signature)
+        console.log(req.body)
         console.log(err)
         return res.sendStatus(400)
     }
