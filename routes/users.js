@@ -104,69 +104,77 @@ router.post('/register', async function (req, res, next) {
     var password = req.body.password;
     var password2 = req.body.password2;
 
-    req.checkBody('name', 'Name is required!').notEmpty();
+   
     req.checkBody('email', 'Email is required!').isEmail();
     req.checkBody('username', 'Username is required!').notEmpty();
     req.checkBody('password', 'Password is required!').notEmpty();
     req.checkBody('password2', 'Passwords do not match!').equals(password);
 
     var errors = req.validationErrors();
+    if (errors) {
+        res.render('register', {
+            errors: errors,
+            user: null,
 
-    let customer = await UserService.getUserByEmail(email)
-    let customerInfo = {}
-    if (customer) {
-        console.log(`email ${email} exist. please user other email to register `)
-        req.flash("email is exist . please use other email to register");
-        res.redirect('/users/register');
+        });
     }
-    if (!customer) {
-        console.log(`email ${email} does not exist. Making one. `)
+    else {
+        let customer = await UserService.getUserByEmail(email)
+        let customerInfo = {}
+        if (customer) {
+            req.flash("error","email is exist . please use other email to register");
+            console.log(`email ${email} exist. please user other email to register `)
 
-        try {
-            customerInfo = await Stripe.addNewCustomer(email)
-            customer = new User({
-                email: customerInfo.email,
-                billingID: customerInfo.id,
-                username: username,
-                password: password,
-                admin: 0,
-                plan: 'none',
-                endDate: null
-            });
-            bcrypt.genSalt(10, function (err, salt) {
+            res.redirect('/users/register');
+        }
+        if (!customer) {
+            console.log(`email ${email} does not exist. Making one. `)
 
-                bcrypt.hash(customer.password, salt, function (err, hash) {
-                    if (err)
-                        console.log(err);
+            try {
+                customerInfo = await Stripe.addNewCustomer(email)
+                customer = new User({
+                    email: customerInfo.email,
+                    billingID: customerInfo.id,
+                    username: username,
+                    password: password,
+                    admin: 0,
+                    plan: 'none',
+                    endDate: null
+                });
+                bcrypt.genSalt(10, function (err, salt) {
 
-                    customer.password = hash;
-                    customer.save(function (err) {
-                        if (err) {
+                    bcrypt.hash(customer.password, salt, function (err, hash) {
+                        if (err)
                             console.log(err);
-                        } else {
-                            req.flash('success', 'You are now registered!');
 
-                            res.redirect('/users/login')
-                        }
+                        customer.password = hash;
+                        customer.save(function (err) {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                req.flash('success', 'You are now registered!');
+
+                                res.redirect('/users/login')
+                            }
+                        });
                     });
                 });
-            });
-            console.log(
-                `A new user signed up and addded to DB. The ID for ${email} is ${JSON.stringify(
-                    customerInfo
-                )}`
-            )
+                console.log(
+                    `A new user signed up and addded to DB. The ID for ${email} is ${JSON.stringify(
+                        customerInfo
+                    )}`
+                )
 
-            console.log(`User also added to DB. Information from DB: ${customer}`)
-        } catch (e) {
-            console.log(e)
-            res.status(200).json({ e })
+                console.log(`User also added to DB. Information from DB: ${customer}`)
+            } catch (e) {
+                console.log(e)
+                res.status(200).json({ e })
+
+            }
+
 
         }
-
-
     }
-
 });
 /*
  * GET login
