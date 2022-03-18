@@ -1,6 +1,6 @@
 const stripe = require('stripe')
 const STRIPE_SECRET_KEY = 'sk_test_51KSdKRCIYWxab9WxOnKhMjI9TDKC3SR8FKUIXpFifWhJ3OnZvSCkxxLx7vwRTgNoUUWOnsV7XqFLw8AnEavfvGtS00eT8OBuHh'
-const STRIPE_WEBHOOK_SECRET = 'whsec_c1e8d451f3013a36e850becfa2d67163b813bf17e02524a66df06768bd070f02'
+const STRIPE_WEBHOOK_SECRET = 'whsec_LFeqcZOsxSyax4yoct7CVHf0hOCABMtf'
 var User = require('../../models/user');
 var passport = require('passport');
 var bcrypt = require('bcryptjs');
