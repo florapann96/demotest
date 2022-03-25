@@ -252,6 +252,7 @@ a {
     border-radius: 3px;
     padding: 6px 8px
 }
+
 .goog-tooltip {
     display: none !important;
 }
@@ -259,6 +260,7 @@ a {
     .goog-tooltip:hover {
         display: none !important;
         color: rgba(0, 0, 0, 0.2)
+      
     }
 
 .goog-text-highlight {

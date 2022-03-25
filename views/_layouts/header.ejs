@@ -67,11 +67,13 @@
                 </div>
                         <!--toggle button for switch language-->
       <!--  <label class="switch">
-            <input type="checkbox" id="togBtn">
-            <div class="slider round">
-                <span language='myanmar' class="on">MYN</span>
-                <span language='english' class="off">ENG</span>
-            </div>
+           <select>
+													 <option class="dropdown-item languageOption selectedLang" href="javascript:void(0)" data-lang="en" data-text="English"> English</option>
+													 <option class="dropdown-item languageOption notSelectedLang" href="javascript:void(0)" data-lang="es" data-text="Espanol"> Espanol</option>
+													 <option class="dropdown-item languageOption notSelectedLang" href="javascript:void(0)" data-lang="fr" data-text="French"> French</option>
+																</select>
+                        <div id='google_translate_element'></div>
+											
         </label> -->
         <div id='google_translate_element'></div>
 
@@ -158,14 +160,48 @@
             </div>  
 
  <script>
- function googleTranslateElementInit() {
- new google.translate.TranslateElement({
- pageLanguage: 'en',
- autoDisplay: 'true',
- includedLanguages:'my,en',
- layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
- }, 'google_translate_element');
- }
+  function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ includedLanguages: 'en,my', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL }, 'google_translate_element');
+        }
+
+        function triggerHtmlEvent(element, eventName) {
+            var event;
+            if (document.createEvent) {
+                event = document.createEvent('HTMLEvents');
+                event.initEvent(eventName, true, true);
+                element.dispatchEvent(event);
+            } else {
+                event = document.createEventObject();
+                event.eventType = eventName;
+                element.fireEvent('on' + event.eventType, event);
+            }
+        }
+$(document).ready(function () {
+            $(document).on('click', '.languageOption', function () {
+                var value = $(this).attr("data-lang");
+
+                updateLanguage(value);
+
+            })
+
+
+            function updateLanguage(value) {
+                var selectIndex = 0;
+                var a = document.querySelector("#google_translate_element select");
+                switch (value) {
+                    case "en":
+                        selectIndex = 0;
+                        break;
+                    case "my":
+                        selectIndex = 2;
+                        break;
+                  
+
+                }
+                a.selectedIndex = selectIndex;
+                a.dispatchEvent(new Event('change'));
+            }
+        })
  </script>
 
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" type="text/javascript"></script>

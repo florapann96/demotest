@@ -17,7 +17,8 @@ var Cart = require('../models/cart');
 const productToPriceMap = {
     weekly: 'price_1KeJxCCIYWxab9WxtWIxFViv',
     monthly: 'price_1KeJxxCIYWxab9WxTPEJ6pZp',
-    yearly: 'price_1KeJyXCIYWxab9WxjZlITkWA'
+    yearly: 'price_1KeJyXCIYWxab9WxjZlITkWA',
+   
 }
 
 /*
@@ -108,6 +109,8 @@ router.post('/register', async function (req, res, next) {
     req.checkBody('email', 'Email is required!').isEmail();
     req.checkBody('username', 'Username is required!').notEmpty();
     req.checkBody('password', 'Password is required!').notEmpty();
+    req.check('password', 'Password must be at least 10 characters').isLength({ min: 10 });
+    req.checkBody("password", "Password must include one lowercase character, one uppercase character, a number, and a special character.").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{10,}$/, "i");
     req.checkBody('password2', 'Passwords do not match!').equals(password);
 
     var errors = req.validationErrors();
@@ -298,69 +301,103 @@ router.get('/reset/:token', function (req, res) {
 });
 
 router.post('/reset/:token', function (req, res) {
+    
+    var password = req.body.password;
+    var password2 = req.body.password2;
+    req.checkBody('password', 'Password is required!').notEmpty();
+    req.check('password', 'Password must be at least 10 characters').isLength({ min: 10 });
+    req.checkBody("password", "Password must include one lowercase character, one uppercase character, a number, and a special character.").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{10,}$/, "i");
+    req.checkBody('password2', 'Passwords do not match!').equals(password);
+    var errors = req.validationErrors();
+    if (errors) {
+        User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function (err, user) {
+            if (!user) {
+                req.flash('error', 'Password reset token is invalid or has expired.');
+                return res.redirect('/users/forget');
+            }
+            console.log(user.resetPasswordToken);
+           
 
-    async.waterfall([
-        function (done) {
-            User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function (err, user) {
-                if (!user) {
-                    req.flash('error', 'Password reset token is invalid or has expired.');
-                    return res.redirect('back');
-                }
+               
+            
+        res.render('reset', {
+            errors: errors,
+            user: null,
+            token: user.resetPasswordToken
 
-                user.password = req.body.password;
-                user.resetPasswordToken = undefined;
-                user.resetPasswordExpires = undefined;
 
-                bcrypt.genSalt(10, function (err, salt) {
+        });
+        });
+    }
+    else {
+        async.waterfall([
+            function (done) {
+                User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function (err, user) {
+                    if (!user) {
+                        req.flash('error', 'Password reset token is invalid or has expired.');
+                        return res.redirect('back');
+                    }
 
-                    bcrypt.hash(user.password, salt, function (err, hash) {
-                        if (err)
-                            console.log(err);
 
-                        user.password = hash;
-                        user.save(function (err) {
-                            if (err) {
+                    user.password = req.body.password;
+                    user.resetPasswordToken = undefined;
+                    user.resetPasswordExpires = undefined;
+
+
+
+                    bcrypt.genSalt(10, function (err, salt) {
+
+                        bcrypt.hash(user.password, salt, function (err, hash) {
+                            if (err)
                                 console.log(err);
-                            } else {
-                                req.logIn(user, function (err) {
-                                    done(err, user);
-                                });
-                            }
+
+                            user.password = hash;
+                            user.save(function (err) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    req.logIn(user, function (err) {
+                                        done(err, user);
+                                    });
+                                }
+                            });
                         });
                     });
-                });
-                //user.save(function (err) {
-                //    req.logIn(user, function (err) {
-                //        done(err, user);
-                //    });
-                //});
-            });
-        },
-        function (user, done) {
-            var smtpTransport = nodemailer.createTransport('SMTP', {
-                service: 'Gmail',
-                auth: {
-                    user: 'lighkeepersburma@gmail.com!',
-                    pass: 'Asd123!@#'
-                }
-            });
-            console.log('password has been sent');
-            var mailOptions = {
-                to: user.email,
-                from: 'passwordreset@demo.com',
-                subject: 'Your password has been changed',
-                text: 'Hello,\n\n' +
-                    'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
-            };
-            smtpTransport.sendMail(mailOptions, function (err) {
-                req.flash('success', 'Success! Your password has been changed.');
-                done(err);
-            });
 
-        }
-    ], function (err) {
-        res.redirect('/users/login');
-    });
+                    //user.save(function (err) {
+                    //    req.logIn(user, function (err) {
+                    //        done(err, user);
+                    //    });
+                    //});
+                });
+
+            },
+            function (user, done) {
+                var smtpTransport = nodemailer.createTransport('SMTP', {
+                    service: 'Gmail',
+                    auth: {
+                        user: 'lighkeepersburma@gmail.com!',
+                        pass: 'Asd123!@#'
+                    }
+                });
+                console.log('password has been sent');
+                var mailOptions = {
+                    to: user.email,
+                    from: 'passwordreset@demo.com',
+                    subject: 'Your password has been changed',
+                    text: 'Hello,\n\n' +
+                        'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+                };
+                smtpTransport.sendMail(mailOptions, function (err) {
+                    req.flash('success', 'Success! Your password has been changed.');
+                    done(err);
+                });
+
+            }
+        ], function (err) {
+            res.redirect('/users/login');
+        });
+    }
 });
 
 router.get('/about', (req, res) => {
@@ -490,8 +527,9 @@ function renderForm(req, res) {
 router.post('/checkout', setCurrentUser, async (req, res) => {
     const customer = req.user
     const { product, customerID } = req.body
-
+   
     const price = productToPriceMap[product]
+    console.log(product)
 
     try {
         const session = await Stripe.createCheckoutSession(customerID, price)

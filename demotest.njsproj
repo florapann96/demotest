@@ -39,12 +39,15 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="database.js" />
+    <Content Include="public\css\contact.css" />
     <Content Include="public\css\adminstyle.css" />
     <Content Include="public\css\style.css">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="public\css\aboutus.css" />
     <Content Include="public\css\test.css" />
     <Content Include="public\images\noimage.png" />
+    <Content Include="public\js\checkout.js" />
     <Content Include="public\js\main.js" />
     <Content Include="public\js\stripe.js" />
     <Content Include="public\js\test.js" />
@@ -59,6 +62,11 @@
     <Content Include="server.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="src\middleware\hasPlan.js" />
+    <Content Include="src\middleware\setCurrentUser.js" />
+    <Content Include="src\user\index.js" />
+    <Content Include="src\user\usermodel.js" />
+    <Content Include="src\user\userservice.js" />
     <Content Include="views\admin\addupcome_product.ejs" />
     <Content Include="views\admin\editupcome_product.ejs" />
     <Content Include="views\admin\plan.ejs" />
@@ -74,7 +82,11 @@
     <Content Include="views\admin\upcome_products.ejs" />
     <Content Include="views\cat_products.ejs" />
     <Content Include="views\excit.ejs" />
+    <Content Include="views\forget.ejs" />
     <Content Include="views\login.ejs" />
+    <Content Include="views\contact.ejs" />
+    <Content Include="views\aboutus.ejs" />
+    <Content Include="views\plan.ejs" />
     <Content Include="views\register.ejs" />
     <Content Include="views\checkout.ejs" />
     <Content Include="views\product.ejs" />
@@ -83,6 +95,8 @@
     <Content Include="views\index.ejs">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="views\reset.ejs" />
+    <Content Include="views\search.ejs" />
     <Content Include="views\_layouts\adminheader.ejs" />
     <Content Include="views\_layouts\adminfooter.ejs" />
     <Content Include="views\_layouts\footer.ejs" />
@@ -98,6 +112,9 @@
     <Folder Include="public\product_images\" />
     <Folder Include="public\js\" />
     <Folder Include="routes\" />
+    <Folder Include="src\" />
+    <Folder Include="src\middleware\" />
+    <Folder Include="src\user\" />
     <Folder Include="views\" />
     <Folder Include="views\admin\" />
     <Folder Include="views\_layouts\" />

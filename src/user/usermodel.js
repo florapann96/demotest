@@ -13,7 +13,9 @@ var UsermodelSchema = mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        match: /(?=.*[a-zA-Z])(?=.*[0-9]+).*/,
+        minlength: 10
     },
     admin: {
         type: Number
