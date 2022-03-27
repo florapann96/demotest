@@ -1,0 +1,52 @@
+<%- include('../_layouts/adminheader'); -%>
+<h2 class="page-title">Add a image</h2>
+<a href="/admin/art" class="btn btn-primary">Back to all Images</a>
+<br><br>
+
+<form method="post" action="/admin/art/add-art" enctype="multipart/form-data">
+    
+    <div class="form-group">
+        <label for="">Title</label>
+        <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
+    </div>
+    
+    <div class="form-group">
+        <label for="">Author</label>
+        <select name="author" class="form-control">
+            <% author.forEach(function(author){ %>
+                <option value="<%= author.name %>"><%= author.name %></option>
+            <% }); %>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="">Image</label>
+        <input type="file" class="form-control" name="image" id="img">
+        <img src="#" id="imgPreview" alt="">
+    </div>
+
+    <button class="btn btn-default">Submit</button>
+</form>
+
+<script>
+    
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function(e) {
+                $("#imgPreview").attr('src', e.target.result).width(100).height(100);
+               
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    $("#img").change(function() {
+        readURL(this);
+    });
+    
+</script>
+
+<%- include('../_layouts/adminfooter'); -%>

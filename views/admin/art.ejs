@@ -1,0 +1,43 @@
+<%- include('../_layouts/adminheader'); -%>
+<h2 class="page-title">Image</h2>
+<a href="/admin/art/add-art" class="btn btn-primary">Add a new image</a>
+<br><br>
+
+<% if (count > 0) { %>
+<table class="table table-striped alignmiddle">
+    <thead>
+        <tr class="home">
+            <th>Image Title</th>
+            <th>Author</th>
+            <th>Image Image</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <% art.forEach(function(art){ %>
+        <tr>
+            <td><%= art.title %></td>
+            <td><%= art.author %></td>
+            <td>
+                <% if (art.image == "") { %>
+                <img id="noimage" src="/images/noimage.png">
+                <% } else {%>
+              
+              <img id="noimage" src="/art_images/<%= art._id %>/<%= art.image %>">
+             
+            
+
+                <% }%>
+            </td>
+            <td><a href="/admin/art/edit-art/<%= art._id %>">Edit</a></td>
+            <td><a class="confirmDeletion" href="/admin/art/delete-art/<%= art._id %>">Delete</a></td>
+        </tr>
+        <% }); %>
+    </tbody>
+</table>
+<% } else {%>
+<h3 class="text-center">There are no products.</h3>
+<% }%>
+<%- include('../_layouts/adminfooter'); -%>

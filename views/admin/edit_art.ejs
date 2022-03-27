@@ -1,0 +1,78 @@
+<%- include('../_layouts/adminheader'); -%>
+
+<h2 class="page-title">Edit image</h2>
+<a href="/admin/art" class="btn btn-primary">Back to all images</a>
+<br><br>
+
+<form method="post" action="/admin/art/edit-art/<%= id %>" enctype="multipart/form-data">
+       <div class="form-group">
+        <label for="">Title</label>
+        <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
+    </div>
+    
+    <div class="form-group">
+        <label for="">Author</label>
+        <select name="author" class="form-control">
+            <% author.forEach(function(author){ %>
+                <option value="<%= author.slug %>"><%= author.name %></option>
+            <% }); %>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="">Image</label>
+        <input type="file" class="form-control" name="image" id="img">
+        <img src="#" id="imgPreview" alt="">
+    </div>
+    
+    <div class="form-group">
+        <label for="">Current Image</label>
+        <p>
+            <% if (image == "") { %>
+            <img id="noimage" src="/images/noimage.png" alt="">
+            <% } else {%>
+            <img id="noimage" src="/art_images/<%= id %>/<%= image %>" alt="">
+            <% } %>
+        </p>
+    </div>
+    
+    <div class="form-group">
+        <label for="">Upload Image</label>
+        <input type="file" class="form-control" name="image" id="img">
+        <img src="#" id="imgPreview" alt="">
+    </div>
+    
+    <input type="hidden" name="pimage" value="<%= image %>">
+    <button class="btn btn-default">Submit</button>
+</form>
+
+<hr>
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/basic.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/dropzone.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/dropzone.js"></script>
+<script>
+    
+    // Preview image
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function(e) {
+                $("#imgPreview").attr('src', e.target.result).width(100).height(100);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    $("#img").change(function() {
+        readURL(this);
+    });
+
+    
+</script>
+
+<%- include('../_layouts/adminfooter'); -%>

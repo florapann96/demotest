@@ -1,0 +1,30 @@
+<%- include('../_layouts/adminheader'); -%>
+<h2 class="page-title">Artists</h2>
+<a href="/admin/author/add-author" class="btn btn-primary">Add a new artist</a>
+<br><br>
+
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <th>Artist Name</th>
+          
+            <th>Contact Number</th>
+            <th>Social Media</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% author.forEach(function(author){ %>
+        <tr>
+            <td><%= author.name %></td>
+            <td><%= author.contact %></td>
+            <td><%= author.social %></td>
+            <td><a href="/admin/author/edit-author/<%= author._id %>">Edit</a></td>
+            <td><a class="confirmDeletion" href="/admin/author/delete-author/<%= author._id %>">Delete</a></td>
+        </tr>
+        <% }); %>
+    </tbody>
+</table>
+<%- include('../_layouts/adminfooter'); -%>

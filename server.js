@@ -66,6 +66,17 @@ Category.find(function (err, categories) {
     }
 });
 
+//Get author model
+var Author = require('./models/author');
+
+// Get all categories to pass to header.ejs
+Author.find(function (err, author) {
+    if (err) {
+        console.log(err);
+    } else {
+        app.locals.author = author;
+    }
+});
 
 
 //Express Session Middleware
@@ -258,8 +269,11 @@ var users = require('./routes/users.js');
 var Plan = require('./routes/plan.js');
 var Pay = require('./routes/pay.js');
 var products = require('./routes/products.js');
+var art = require('./routes/art.js');
 var adminpages = require('./routes/admin_pages.js');
 var adminCategories = require('./routes/admin_categories.js');
+var adminauthor = require('./routes/admin_author.js');
+var adminart = require('./routes/admin_art.js');
 var adminProducts = require('./routes/admin_products.js');
 var adminupcome = require('./routes/upcome_products.js');
 
@@ -267,8 +281,11 @@ var adminupcome = require('./routes/upcome_products.js');
 app.use('/', pages);
 app.use('/admin/pages', adminpages);
 app.use('/admin/categories', adminCategories);
+app.use('/admin/author', adminauthor);
+app.use('/admin/art', adminart);
 app.use('/admin/products', adminProducts);
 app.use('/products', products);
+app.use('/art', art);
 app.use('/admin/upcomeproducts', adminupcome);
 app.use('/', cart);
 app.use('/plan', Plan);
