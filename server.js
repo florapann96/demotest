@@ -8,7 +8,7 @@ var config = require('./config/database');
 var session = require('express-session');
 var expressValidator = require('express-validator');
 var MongoStore = require('connect-mongo');
-
+var AWS = require('aws-sdk');
 var fileUpload = require('express-fileupload');
 var passport = require('passport');
 var async = require('async');
@@ -93,18 +93,18 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // Express fileUpload middleware
 app.use(fileUpload());
 
-var multer = require('multer');
+//var multer = require('multer');
 
-var storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads')
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.fieldname + '-' + Date.now())
-    }
-});
+//var storage = multer.diskStorage({
+//    destination: (req, file, cb) => {
+//        cb(null, 'uploads')
+//    },
+//    filename: (req, file, cb) => {
+//        cb(null, file.fieldname + '-' + Date.now())
+//    }
+//});
 
-var upload = multer({ storage: storage });
+//var upload = multer({ storage: storage });
 
 //Express Validator middleware
 app.use(expressValidator({
