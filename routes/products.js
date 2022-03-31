@@ -169,7 +169,7 @@ router.get('/:category/:product', function (req, res) {
             console.log(err);
         } else {
             console.log(req.params.product)
-            var galleryDir = 'https://www.dropbox.com/home/product_images/' + product._id;
+            var galleryDir = 'public/product_images/' + product._id;
             console.log(galleryDir)
 
             fs.readdir(galleryDir, function (err, files) {
