@@ -17,6 +17,7 @@ var Product = require('./models/product');
 var Cart = require('./models/cart');
 var User = require('./src/user/usermodel');
 var nodemailer = require('nodemailer');
+
 //connect to DB
 
 mongoose.connect(config.database, {
