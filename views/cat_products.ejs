@@ -191,7 +191,7 @@
 <div class="row products">
     
     <% products.forEach(function(p){ %>
-          <div class ="content">
+         
            <div class="filterDiv <%= p.status %>">
                 <a class="pa " href="/products/<%= p.category %>/<%= p.title %>">
                     <img class="pimage  " src="/product_images/<%= p.id %>/<%= p.image %>" alt="">
@@ -206,13 +206,12 @@
                 <a class="vd " href="/products/<%= p.category %>/<%= p.title %>" style="margin-left:-12px">View Details</a>
             </div>
         <% }); %>  
-</div>
+
 
 </div>
 </div>
 <br>
-<div class="pagination">
-</div>
+
 
 <script>
 filterSelection("all")

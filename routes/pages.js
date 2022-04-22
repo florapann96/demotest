@@ -61,7 +61,7 @@ var isUser = auth.isUser;
 //    });
 //});
 
-router.get("/", getexcit, gettop,getupcome, getcart,renderForm);
+router.get('/', getexcit, gettop,getupcome, getcart,renderForm);
 
 function getexcit(req, res, next) {
     // Code here

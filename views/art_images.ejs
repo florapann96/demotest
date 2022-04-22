@@ -203,12 +203,11 @@
     <% art.forEach(function(art){ %>
       
               <div class="column2">
-          <div class ="content" >
+          
               
               
                 <img class="bnimage" src="/art_images/<%= art.id %>/<%= art.image %>" alt="" onclick="onClick(this)" >
-                      
-            </div>
+          
            </div>
         <% }); %>  
 </div>
@@ -222,8 +221,8 @@
 </div>
 <br>
 <br>
-<div class="pagination">
-</div>
+<!-- <div class="pagination">
+</div> --> 
 <script>
 function onClick(element) {
   document.getElementById("img01").src = element.src;

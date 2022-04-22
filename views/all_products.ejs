@@ -25,19 +25,20 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <!--signin css-->
    <link rel="stylesheet" href="/css/login.css" />
 
     <!--call the stylesheet css part-->
     <link rel="stylesheet" href="/css/style.css" />
+ 
     <link rel="stylesheet" href="/css/test.css">
      <link rel="stylesheet" href="/css/layer.css" />
     </head>
 
     <body>
-        <style>
+    <style>
     .search-btn {
     display: flex;
     text-align: center;
@@ -53,9 +54,38 @@
     background: none;
     font-size: 20px;
     border-left: 0px;
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.top-left {
+  position: absolute;
+  top: 100px;
+  left: 16px;
+}
+.top-center{
+position: absolute;
+  top: 100px;
+  left: 700px;
+
+}
+.top-right {
+  position: absolute;
+  top: 100px;
+  right: 16px;
+}
+.container1{
+  width: 100%
+  height:50%
+
+}
+
    
 }
-</style>
+    </style>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
             <div class="icon">
@@ -66,17 +96,19 @@
                 </div>
                         <!--toggle button for switch language-->
       <!--  <label class="switch">
-            <input type="checkbox" id="togBtn">
-            <div class="slider round">
-                <span language='myanmar' class="on">MYN</span>
-                <span language='english' class="off">ENG</span>
-            </div>
+           <select>
+													 <option class="dropdown-item languageOption selectedLang" href="javascript:void(0)" data-lang="en" data-text="English"> English</option>
+													 <option class="dropdown-item languageOption notSelectedLang" href="javascript:void(0)" data-lang="es" data-text="Espanol"> Espanol</option>
+													 <option class="dropdown-item languageOption notSelectedLang" href="javascript:void(0)" data-lang="fr" data-text="French"> French</option>
+																</select>
+                        <div id='google_translate_element'></div>
+											
         </label> -->
         <div id='google_translate_element'></div>
 
            <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
             <div class="navbar-nav">
-                <a href="/" class="nav-item nav-link cat1"> Home-Page</a>
+                <a href="/" class="nav-item nav-link" style="font-size:17px;"> Home-Page</a>
                 <div class="nav-item dropdown">
                     <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle cat2">Categories</a>
                  
@@ -90,6 +122,7 @@
                     </div>
                 </div>
                 <!--<a href="#" class="nav-item nav-link active">Blog</a>-->
+                
                  <a href="/users/contact" class="nav-item nav-link cat5">Contact<b style="color:#f2f4f5">1</b></a>
                 <a href="/art" class="nav-item nav-link cat4">Collections</a>
              
@@ -100,9 +133,8 @@
                 <% }%>
                 
                 <a href="/users/about" class="nav-item nav-link cat3">About Us<b style="color:#f2f4f5">1</b></a>
-                
             </div>
-            <div class="navbar-form form-inline">  
+         <div class="navbar-form form-inline">  
           <div class="input-group search-box ">
                   <form class="search" action="/search" method="GET">
                      <input class="form-control searchplaceholder" type="text" placeholder="Search Title..." name="productName">
@@ -114,12 +146,12 @@
           </div>
       </div>
             
-            <div class="dropdown" style=" margin-bottom:10px;">
+            <div style=" margin-bottom:10px; ">
 
              
                            <% if (user) { %>
                            
-                            <a href="/checkout" class="btn wishlist-btn" style="background-color: #e2bc77; margin-right: 20px; margin-left: 20px; 
+                            <a href="/checkout" class="btn wishlist-btn" style="background-color: #e2bc77; margin-right: 9px; margin-left: 10px; 
                             margin-top: 9px; height: 100%; width:100%;  text-align: center; padding: 6px; color: white;"><i class="fa fa-heart"  style="color:black"></i> FavList(
                                 <% if (typeof cart !== "undefined") { %>
                                 <%= cart.length %>
@@ -157,14 +189,48 @@
             </div>  
 
  <script>
- function googleTranslateElementInit() {
- new google.translate.TranslateElement({
- pageLanguage: 'en',
- autoDisplay: 'true',
- includedLanguages:'my,en',
- layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
- }, 'google_translate_element');
- }
+  function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ includedLanguages: 'en,my', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL }, 'google_translate_element');
+        }
+
+        function triggerHtmlEvent(element, eventName) {
+            var event;
+            if (document.createEvent) {
+                event = document.createEvent('HTMLEvents');
+                event.initEvent(eventName, true, true);
+                element.dispatchEvent(event);
+            } else {
+                event = document.createEventObject();
+                event.eventType = eventName;
+                element.fireEvent('on' + event.eventType, event);
+            }
+        }
+$(document).ready(function () {
+            $(document).on('click', '.languageOption', function () {
+                var value = $(this).attr("data-lang");
+
+                updateLanguage(value);
+
+            })
+
+
+            function updateLanguage(value) {
+                var selectIndex = 0;
+                var a = document.querySelector("#google_translate_element select");
+                switch (value) {
+                    case "en":
+                        selectIndex = 0;
+                        break;
+                    case "my":
+                        selectIndex = 2;
+                        break;
+                  
+
+                }
+                a.selectedIndex = selectIndex;
+                a.dispatchEvent(new Event('change'));
+            }
+        })
  </script>
 
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" type="text/javascript"></script>
@@ -180,7 +246,6 @@
                 <% });%>
             <% }%>
 
-</div>
 
 <div class="status" id="myBtnContainer">
   <button class="status1 active" onclick="filterSelection('all')"> Show all</button>
@@ -193,8 +258,8 @@
 <div class="row products">
  <div id="jar" style="display:none">
     <% savedproduct.forEach(function(products){ %>
-           <div class="content">
-              <div class="filterDiv <%= products.status %>">
+          
+              <div class=" filterDiv  <%= products.status %>">
               
                 <a class="pa " href="/products/<%= products.category %>/<%= products.title %>">
                     <img class="pimage  " src="/product_images/<%= products.id %>/<%= products.image %>" alt="">
@@ -208,14 +273,13 @@
                 <br>
                 <a class="vd " href="/products/<%= products.category %>/<%= products.title %>" style="margin-left:-12px">View Details</a>
                
-          </div>
+          
            </div>
         <% }); %>
 
 </div>
 </div>
-<div class="pagination">
-</div>
+
 
 <script>
 filterSelection("all")

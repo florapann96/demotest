@@ -181,7 +181,7 @@ html, body {
     color: #fff;
     margin: 0;
     padding: 0 !important;
-    font-size: 13px;
+    font-size: 12px;
     border: none;
     transition: all 0.4s;
     text-align: center;
@@ -208,7 +208,7 @@ html, body {
 
 .navbar .social-btn .btn i {
     margin-right: 5px;
-    font-size: 16px;
+    font-size: 15px;
     position: relative;
     top: 2px;
 }
@@ -381,7 +381,7 @@ img {
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
     .text1 {
-        font-size: 11px
+        font-size: 10px
     }
 }
 .box2{

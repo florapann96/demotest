@@ -54,6 +54,35 @@
     background: none;
     font-size: 20px;
     border-left: 0px;
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.top-left {
+  position: absolute;
+  top: 100px;
+  left: 16px;
+}
+.top-center{
+position: absolute;
+  top: 100px;
+  left: 700px;
+
+}
+.top-right {
+  position: absolute;
+  top: 100px;
+  right: 16px;
+}
+.container1{
+  width: 100%
+  height:50%
+
+}
+
    
 }
     </style>
@@ -79,7 +108,7 @@
 
            <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
             <div class="navbar-nav">
-                <a href="/" class="nav-item nav-link cat1"> Home-Page</a>
+                <a href="/" class="nav-item nav-link" style="font-size:17px;"> Home-Page</a>
                 <div class="nav-item dropdown">
                     <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle cat2">Categories</a>
                  
@@ -117,12 +146,12 @@
           </div>
       </div>
             
-            <div class="dropdown" style=" margin-bottom:10px;">
+            <div style=" margin-bottom:10px; ">
 
              
                            <% if (user) { %>
                            
-                            <a href="/checkout" class="btn wishlist-btn" style="background-color: #e2bc77; margin-right: 20px; margin-left: 20px; 
+                            <a href="/checkout" class="btn wishlist-btn" style="background-color: #e2bc77; margin-right: 9px; margin-left: 10px; 
                             margin-top: 9px; height: 100%; width:100%;  text-align: center; padding: 6px; color: white;"><i class="fa fa-heart"  style="color:black"></i> FavList(
                                 <% if (typeof cart !== "undefined") { %>
                                 <%= cart.length %>
