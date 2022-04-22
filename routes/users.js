@@ -258,9 +258,12 @@ router.post('/forget', function (req, res, next) {
             });
         },
         function (token, user, done) {
-
-            var smtpTransport = nodemailer.createTransport('SMTP', {
-                service: 'Gmail', // se puede usar cualquier otro servicio soportado por nodemailer, see nodemailer support mail SMTP
+           
+            const smtpTransport = nodemailer.createTransport('SMTP',{
+                host: 'smtp.gmail.com',
+                port: 465,
+                secure: true,
+                service: 'Gmail', // se puede usar cualquier otro servicio soportado por nodemailer, see nodemailer support mail SMTP*/
                 auth: {
                     user: 'lighkeepersburma@gmail.com', //email from
                     pass: 'Asd123!@#' //password 
