@@ -9,7 +9,6 @@
   "author": "",
   "dependencies": {
     "alert": "^5.0.10",
-    "apt": "^0.0.2",
     "async": "^3.2.3",
     "aws-sdk": "^2.1104.0",
     "bcryptjs": "^2.4.3",
