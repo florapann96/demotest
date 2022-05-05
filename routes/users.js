@@ -19,6 +19,8 @@ const productToPriceMap = {
     monthly: 'price_1KeJxxCIYWxab9WxTPEJ6pZp',
     yearly: 'price_1KeJyXCIYWxab9WxjZlITkWA',
    
+
+   
 }
 
 /*
@@ -530,19 +532,20 @@ function renderForm(req, res) {
 router.post('/checkout', setCurrentUser, async (req, res) => {
     const customer = req.user
     const { product, customerID } = req.body
-   
+    console.log(req.body)
     const price = productToPriceMap[product]
     console.log(product)
+    console.log(customerID)
 
     try {
         const session = await Stripe.createCheckoutSession(customerID, price)
 
-        console.log(session.payment_status)
+        /*console.log(session.payment_status)*/
 
         customer.plan = product
         customer.hasTrial = false
         customer.endDate = null
-        console.log(customer.plan)
+     /*   console.log(customer.plan)*/
         /*customer.save()*/
         res.send({
             sessionId: session.id
