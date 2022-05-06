@@ -147,6 +147,17 @@ router.post('/add-product', function (req, res) {
                     if (err)
                         return console.log(err);
 
+                    //mkdirp('public/product_images/' + product._id, function (err) {
+                    //    return console.log(err);
+                    //});
+
+                    //mkdirp('public/product_images/' + product._id + '/gallery', function (err) {
+                    //    return console.log(err);
+                    //});
+
+                    //mkdirp('public/product_images/' + product._id + '/gallery/thumbs', function (err) {
+                    //    return console.log(err);
+                    //});
                     mkdirp('public/product_images/' + product._id, function (err) {
                         return console.log(err);
                     });
