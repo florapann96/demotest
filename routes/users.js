@@ -17,7 +17,7 @@ var Cart = require('../models/cart');
 const productToPriceMap = {
     weekly: 'price_1KeJxCCIYWxab9WxtWIxFViv',
     monthly: 'price_1KeJxxCIYWxab9WxTPEJ6pZp',
-    yearly: 'price_1KeJyXCIYWxab9WxjZlITkWA',
+    yearly: 'price_1KxX27CIYWxab9WxvEXEbVrT',
    
 
    
@@ -634,7 +634,7 @@ router.post('/webhook', async (req, res) => {
                 console.log('You are talking about monthly product')
                 user.plan = 'monthly'
             }
-            if (data.plan.id === 'price_1KeJyXCIYWxab9WxjZlITkWA') {
+            if (data.plan.id === 'price_1KxX27CIYWxab9WxvEXEbVrT') {
                 console.log('You are talking about yearly product')
                 user.plan = 'yearly'
             }
