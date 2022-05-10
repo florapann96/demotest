@@ -35,7 +35,7 @@ module.exports = function (passport) {
                             return done(null, email);
                             console.log("reach this part here");
                         } if (!isMatch) {
-                            return done(null, false, { message: 'Wrong password.' });
+                            return done(null, false, { message: 'The email address or password is incorrect.' });
                             console.log("reach here");
                         }
                     });
